@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "420973582105",
+    "project_id": "cancer-7107f",
+    "storage_bucket": "cancer-7107f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420973582105:android:8e79123a9d154e5eac1788",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "420973582105-2o76mqgaoad73o8hshuf53bfk19qvjfl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.project",
+            "certificate_hash": "6ccee2d6b6386cef4bc041db964304935057ee7e"
+          }
+        },
+        {
+          "client_id": "420973582105-kcgv8m42fjdirbsoq7bg4ghk7u7si2ov.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKhvxUDf6QSQGPR9kPvd_nHSKBRv2SQAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "420973582105-kcgv8m42fjdirbsoq7bg4ghk7u7si2ov.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
