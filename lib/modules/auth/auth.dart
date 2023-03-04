@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last, library_private_types_in_public_api
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last, library_private_types_in_public_api, unused_local_variable
 
 import 'package:ColonCancer/layout/home_layout.dart';
 import 'package:firebase_auth/firebase_auth.dart';
