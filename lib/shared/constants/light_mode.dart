@@ -24,7 +24,7 @@ final lightmode = ThemeData(
     ),
   ),
   floatingActionButtonTheme: FloatingActionButtonThemeData(
-    backgroundColor: allColor,
+    backgroundColor: Colors.blue,
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     type: BottomNavigationBarType.fixed,

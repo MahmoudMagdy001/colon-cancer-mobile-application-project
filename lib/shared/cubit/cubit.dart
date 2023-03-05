@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sqflite/sqflite.dart';
 
 import '../../modules/endoscopy/endoscopy_screen.dart';
 import '../../modules/gene_expression/gene_expression.dart';
@@ -26,6 +27,13 @@ class AppCubit extends Cubit<AppStates> {
   bool isCheckedGeneticDisease = false;
 
   var selectedItem;
+
+  bool isMale = true;
+  double age = 20;
+  int weight = 60;
+  int height = 160;
+
+  int isSelected = 1;
 
   List<Widget> screens = [
     newsScreen(),
@@ -106,9 +114,39 @@ class AppCubit extends Cubit<AppStates> {
     emit(AppChangeCheckBoxGeneticDisease());
   }
 
-  void changeGender(newValue) {
-    selectedItem = newValue;
+  void changeGender() {
+    isMale = !isMale;
     emit(AppChangeGender());
+  }
+
+  void changeAge(Value) {
+    age = Value;
+    emit(AppChangeHeightState());
+  }
+
+  void plusHeight() {
+    height++;
+    emit(AppPlusAgeState());
+  }
+
+  void minusHeight() {
+    height--;
+    emit(AppMinusAgeState());
+  }
+
+  void plusWeight() {
+    weight++;
+    emit(AppPlusWeightState());
+  }
+
+  void minusWeight() {
+    weight--;
+    emit(AppMinusWeightState());
+  }
+
+  void changeRadio(value) {
+    isSelected = value;
+    emit(AppChangeRadio());
   }
 
   // to pick image form gallary or camera
@@ -140,4 +178,88 @@ class AppCubit extends Cubit<AppStates> {
       print('failed to pick image: $e');
     }
   }
+
+  late Database database;
+  List<Map> newForum = [];
+
+  void createDatabase() {
+    openDatabase(
+      'Cancer.db',
+      version: 1,
+      onCreate: (database, version) {
+        print('database created ');
+        database
+            .execute(
+                'CREATE TABLE forum (id INTEGER PRIMARY KEY, name TEXT,age TEXT, weight TEXT, height TEXT, BSA TEXT)')
+            .then((value) {
+          print('table created ');
+        }).catchError((error) {
+          print('Error when creating table ${error.toString()}');
+        });
+      },
+      onOpen: (database) {
+        getDataFromDatabase(database);
+        print('database opened');
+      },
+    ).then((value) {
+      database = value;
+      emit(AppCreateDataBaseState());
+    });
+  }
+
+  void getDataFromDatabase(database) {
+    newForum = [];
+
+    emit(AppGetDataBaseLoadingState());
+    database.rawQuery('SELECT * FROM forum').then((value) {
+      value.forEach((element) {
+        newForum.add(element);
+      });
+      emit(AppGetDataBaseState());
+    });
+  }
+
+  insertToDatabase({
+    required String name,
+    required double age,
+    required int weight,
+    required int height,
+    required double BSA,
+  }) async {
+    await database.transaction((txn) async {
+      txn
+          .rawInsert(
+        'INSERT INTO forum(name, age, weight, height,BSA) VALUES ("$name","$age","$weight","$height","$BSA")',
+      )
+          .then((value) {
+        print('$value inserted successfully');
+        emit(AppInsertDataBaseState());
+
+        getDataFromDatabase(database);
+      }).catchError((error) {
+        print('error when inserting new record ${error.toString()}');
+      });
+      return null;
+    });
+  }
+
+  void deleteData({
+    required int id,
+  }) async {
+    database.rawDelete('DELETE FROM forum WHERE id = ?', [id]).then((value) {
+      getDataFromDatabase(database);
+      emit(AppDeleteDataBaseState());
+    });
+  }
+
+  // void updateData({
+  //   required String status,
+  //   required int id,
+  // }) async {
+  //   database.rawUpdate(
+  //       'UPDATE forum SET status = ? WHERE id = ?', [status, id]).then((value) {
+  //     getDataFromDatabase(database);
+  //     emit(AppUpdateDataBaseState());
+  //   });
+  // }
 }
