@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../shared/cubit/cubit.dart';
 import '../../shared/cubit/states.dart';
+import '../../shared/styles/colors.dart';
 
 class recordsScreen extends StatelessWidget {
   var searchContoller = TextEditingController();
@@ -16,8 +17,21 @@ class recordsScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         var dataa = AppCubit.get(context).newForum;
-        return tasksBuilder(
-          data: dataa,
+        return Scaffold(
+          appBar: AppBar(
+            foregroundColor: allColor,
+            backgroundColor: backGroundColor,
+            title: TextFormField(
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(
+                label: Text('Search'),
+                prefixIcon: Icon(Icons.search),
+              ),
+            ),
+          ),
+          body: tasksBuilder(
+            data: dataa,
+          ),
         );
       },
     );
