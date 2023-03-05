@@ -181,16 +181,6 @@ class forumScreen extends StatelessWidget {
                                     fontWeight: FontWeight.w900,
                                   ),
                                 ),
-                                // const SizedBox(
-                                //   width: 5,
-                                // ),
-                                // const Text(
-                                //   "CM",
-                                //   style: TextStyle(
-                                //     fontSize: 20,
-                                //     fontWeight: FontWeight.bold,
-                                //   ),
-                                // ),
                               ],
                             ),
                             Slider(
@@ -322,59 +312,6 @@ class forumScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 20),
 
-                      // Container(
-                      //   padding: const EdgeInsets.only(left: 15, bottom: 10),
-                      //   width: double.infinity,
-                      //   child: DropdownButton<String>(
-                      //     itemHeight: 60,
-                      //     dropdownColor: Colors.white,
-                      //     icon: const Icon(Icons.arrow_drop_down),
-                      //     iconSize: 30,
-                      //     style: const TextStyle(
-                      //         color: Colors.black, fontSize: 18),
-                      //     underline: Container(
-                      //       height: 0,
-                      //       color: Colors.transparent,
-                      //     ),
-                      //     elevation: 0,
-                      //     isExpanded: true,
-                      //     value: cubit.selectedItem,
-                      //     onChanged: (String? newValue) {
-                      //       cubit.changeGender(newValue);
-                      //     },
-                      //     items: <String>[
-                      //       'Male',
-                      //       'Female',
-                      //     ].map<DropdownMenuItem<String>>((String value) {
-                      //       return DropdownMenuItem<String>(
-                      //         value: value,
-                      //         child: Text(value),
-                      //       );
-                      //     }).toList(),
-                      //   ),
-                      // ),
-
-                      // Row(
-                      //   children: [
-
-                      //     Transform.scale(
-                      //       scale: 1.5,
-                      //       child: Checkbox(
-                      //         value: cubit.isCheckedSmooking,
-                      //         onChanged: (bool? newValue) {
-                      //           cubit.changeCheckBoxSmooking(newValue);
-                      //         },
-                      //         activeColor: allColor,
-                      //         checkColor: Colors.white,
-                      //       ),
-                      //     ),
-                      //     CustomText(
-                      //       text: 'Smoking',
-                      //       fontSize: 25.0,
-                      //       color: Colors.grey[800],
-                      //     ),
-                      //   ],
-                      // ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
