@@ -27,24 +27,25 @@ Widget buildTaskItem(Map model, context) => Dismissible(
                   SizedBox(height: 5),
 
                   //////// date of pateint
-                  if (model['gender'] == 'true')
-                    Text(
-                      'Male',
-                      style: const TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.w700),
-                    ),
-                  if (model['gender'] == 'false')
-                    Text(
-                      'Female',
-                      style: const TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.w700),
-                    ),
-                  // Text(
-                  //   '${model['BSA']}',
-                  //   style: const TextStyle(
-                  //     color: Colors.grey,
+                  // if (model['gender'] == 'true')
+                  //   Text(
+                  //     'Male',
+                  //     style: const TextStyle(
+                  //         color: Colors.grey, fontWeight: FontWeight.w700),
                   //   ),
-                  // ),
+                  // if (model['gender'] == 'false')
+                  //   Text(
+                  //     'Female',
+                  //     style: const TextStyle(
+                  //         color: Colors.grey, fontWeight: FontWeight.w700),
+                  //   ),
+                  Text(
+                    '${model['date']}',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: Colors.grey,
+                    ),
+                  ),
                 ],
               ),
             ),

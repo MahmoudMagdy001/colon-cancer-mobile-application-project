@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../layout/home_layout.dart';
 
@@ -32,6 +33,7 @@ class forumScreen extends StatelessWidget {
             var BSAA = sqrt((height * weight) / 3600);
             var gender = cubit.isMale;
             var smoke = cubit.isSelected;
+            var date = DateFormat.yMMMd().format(DateTime.now());
             return Scaffold(
               appBar: AppBar(
                 elevation: 5.0,
@@ -398,6 +400,7 @@ class forumScreen extends StatelessWidget {
                                   BSA: BSAA,
                                   gender: gender.toString(),
                                   smoke: smoke.toString(),
+                                  date: date,
                                 );
                                 _showAlertDialogData(context);
                               } catch (error) {
