@@ -190,7 +190,7 @@ class AppCubit extends Cubit<AppStates> {
         print('database created ');
         database
             .execute(
-                'CREATE TABLE forum (id INTEGER PRIMARY KEY, name TEXT,age TEXT, weight TEXT, height TEXT, BSA TEXT)')
+                'CREATE TABLE forum (id INTEGER PRIMARY KEY, name TEXT,age TEXT, weight TEXT, height TEXT, BSA TEXT, gender TEXT, smoke TEXT)')
             .then((value) {
           print('table created ');
         }).catchError((error) {
@@ -225,11 +225,13 @@ class AppCubit extends Cubit<AppStates> {
     required int weight,
     required int height,
     required double BSA,
+    required String gender,
+    required String smoke,
   }) async {
     await database.transaction((txn) async {
       txn
           .rawInsert(
-        'INSERT INTO forum(name, age, weight, height,BSA) VALUES ("$name","$age","$weight","$height","$BSA")',
+        'INSERT INTO forum(name, age, weight, height, BSA, gender, smoke) VALUES ("$name","$age","$weight","$height","$BSA","$gender","$smoke")',
       )
           .then((value) {
         print('$value inserted successfully');

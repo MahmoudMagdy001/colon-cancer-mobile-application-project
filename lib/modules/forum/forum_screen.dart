@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../layout/home_layout.dart';
-import '../../shared/components/button/button.dart';
+
 import '../../shared/components/navigator_push_replacment/navigator_replacment.dart';
 import '../../shared/components/text/text.dart';
 import '../../shared/components/text_form_field/text_form_field.dart';
@@ -16,10 +16,8 @@ import '../../shared/cubit/states.dart';
 import '../../shared/styles/colors.dart';
 
 class forumScreen extends StatelessWidget {
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
   var nameContoller = TextEditingController();
-  var ageContoller = TextEditingController();
-  var heightContoller = TextEditingController();
-  var weightContoller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +30,8 @@ class forumScreen extends StatelessWidget {
             var height = cubit.height;
             var weight = cubit.weight;
             var BSAA = sqrt((height * weight) / 3600);
+            var gender = cubit.isMale;
+            var smoke = cubit.isSelected;
             return Scaffold(
               appBar: AppBar(
                 elevation: 5.0,
@@ -60,6 +60,7 @@ class forumScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 physics: const BouncingScrollPhysics(),
                 child: Form(
+                  key: formkey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -76,7 +77,7 @@ class forumScreen extends StatelessWidget {
                         label: 'PATIENT NAME',
                         prefix: Icons.person,
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 10),
                       Row(
                         children: [
                           Expanded(
@@ -96,10 +97,10 @@ class forumScreen extends StatelessWidget {
                                   children: const [
                                     Icon(
                                       Icons.male,
-                                      size: 85.0,
+                                      size: 65.0,
                                     ),
                                     SizedBox(
-                                      height: 10,
+                                      height: 5,
                                     ),
                                     Text(
                                       "Male",
@@ -125,7 +126,7 @@ class forumScreen extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0),
                                   color: !cubit.isMale
-                                      ? Colors.blue
+                                      ? Colors.pink
                                       : backGroundColor,
                                 ),
                                 child: Column(
@@ -133,10 +134,10 @@ class forumScreen extends StatelessWidget {
                                   children: const [
                                     Icon(
                                       Icons.female,
-                                      size: 85.0,
+                                      size: 65.0,
                                     ),
                                     SizedBox(
-                                      height: 10,
+                                      height: 5,
                                     ),
                                     Text(
                                       "Female",
@@ -193,11 +194,14 @@ class forumScreen extends StatelessWidget {
                               ],
                             ),
                             Slider(
+                                activeColor:
+                                    !cubit.isMale ? Colors.pink : Colors.blue,
                                 value: cubit.age,
                                 min: 10,
                                 max: 90,
                                 onChanged: (Value) {
                                   cubit.changeAge(Value);
+                                  print(Value);
                                 })
                           ],
                         ),
@@ -231,6 +235,9 @@ class forumScreen extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       FloatingActionButton(
+                                        backgroundColor: !cubit.isMale
+                                            ? Colors.pink
+                                            : Colors.blue,
                                         onPressed: () {
                                           cubit.minusHeight();
                                         },
@@ -239,6 +246,9 @@ class forumScreen extends StatelessWidget {
                                         child: const Icon(Icons.remove),
                                       ),
                                       FloatingActionButton(
+                                        backgroundColor: !cubit.isMale
+                                            ? Colors.pink
+                                            : Colors.blue,
                                         onPressed: () {
                                           cubit.plusHeight();
                                         },
@@ -281,6 +291,9 @@ class forumScreen extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       FloatingActionButton(
+                                        backgroundColor: !cubit.isMale
+                                            ? Colors.pink
+                                            : Colors.blue,
                                         onPressed: () {
                                           cubit.minusWeight();
                                         },
@@ -289,6 +302,9 @@ class forumScreen extends StatelessWidget {
                                         child: const Icon(Icons.remove),
                                       ),
                                       FloatingActionButton(
+                                        backgroundColor: !cubit.isMale
+                                            ? Colors.pink
+                                            : Colors.blue,
                                         onPressed: () {
                                           cubit.plusWeight();
                                         },
@@ -304,7 +320,7 @@ class forumScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 30),
+                      SizedBox(height: 20),
 
                       // Container(
                       //   padding: const EdgeInsets.only(left: 15, bottom: 10),
@@ -365,6 +381,8 @@ class forumScreen extends StatelessWidget {
                           Transform.scale(
                             scale: 1.5,
                             child: Radio(
+                              activeColor:
+                                  !cubit.isMale ? Colors.pink : Colors.blue,
                               value: 1,
                               groupValue: cubit.isSelected,
                               onChanged: (value) {
@@ -380,6 +398,8 @@ class forumScreen extends StatelessWidget {
                           Transform.scale(
                             scale: 1.5,
                             child: Radio(
+                              activeColor:
+                                  !cubit.isMale ? Colors.pink : Colors.blue,
                               value: 2,
                               groupValue: cubit.isSelected,
                               onChanged: (value) {
@@ -394,34 +414,68 @@ class forumScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 10.0),
-                      Row(
-                        children: [
-                          Text(
-                            'BSA:',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          SizedBox(width: 15),
-                          Text(
-                            BSAA.toString(),
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ],
+                      Container(
+                        height: 30,
+                        decoration: BoxDecoration(
+                          border: Border.all(),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'BSA:',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            SizedBox(width: 15),
+                            Text(
+                              BSAA.toString(),
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ],
+                        ),
                       ),
                       SizedBox(height: 10),
 
                       // insert data to local database to show data in records screen
-                      CustomButton(
-                        label: 'Submit',
-                        color: allColor,
-                        onPressed: () {
-                          cubit.insertToDatabase(
-                            name: nameContoller.text,
-                            age: cubit.age,
-                            weight: weight,
-                            height: height,
-                            BSA: BSAA,
-                          );
-                        },
+                      Container(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 16.0,
+                                horizontal: 30.0,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)),
+                              backgroundColor:
+                                  !cubit.isMale ? Colors.pink : Colors.blue),
+                          onPressed: () {
+                            if (formkey.currentState!.validate()) {
+                              try {
+                                cubit.insertToDatabase(
+                                  name: nameContoller.text,
+                                  age: cubit.age,
+                                  weight: weight,
+                                  height: height,
+                                  BSA: BSAA,
+                                  gender: gender.toString(),
+                                  smoke: smoke.toString(),
+                                );
+                              } catch (error) {
+                                print(error);
+                              }
+                            }
+                          },
+                          child: Text(
+                            'Submit',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Lato'),
+                          ),
+                        ),
                       ),
                     ],
                   ),
