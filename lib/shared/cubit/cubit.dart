@@ -222,7 +222,7 @@ class AppCubit extends Cubit<AppStates> {
 
   insertToDatabase({
     required String name,
-    required double age,
+    required String age,
     required int weight,
     required int height,
     required double BSA,

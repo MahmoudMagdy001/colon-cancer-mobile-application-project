@@ -2,14 +2,12 @@
 
 import 'dart:math';
 
-import 'package:ColonCancer/shared/components/navigator_push/navigator_push.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../layout/home_layout.dart';
-
 import '../../shared/components/navigator_push_replacment/navigator_replacment.dart';
 import '../../shared/components/text/text.dart';
 import '../../shared/components/text_form_field/text_form_field.dart';
@@ -20,6 +18,7 @@ import '../../shared/styles/colors.dart';
 class forumScreen extends StatelessWidget {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   var nameContoller = TextEditingController();
+  var ageContoller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +78,22 @@ class forumScreen extends StatelessWidget {
                         controller: nameContoller,
                         label: 'PATIENT NAME',
                         prefix: Icons.person,
+                      ),
+                      SizedBox(height: 10),
+                      customTextFormField(
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        type: TextInputType.number,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Age must not be empty';
+                          }
+                          return null;
+                        },
+                        controller: ageContoller,
+                        label: 'AGE',
+                        prefix: Icons.numbers,
                       ),
                       SizedBox(height: 10),
                       Row(
@@ -156,49 +171,7 @@ class forumScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 15.0),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: backGroundColor,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "AGE",
-                              style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Row(
-                              textBaseline: TextBaseline.alphabetic,
-                              crossAxisAlignment: CrossAxisAlignment.baseline,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '${cubit.age.round()}',
-                                  style: const TextStyle(
-                                    fontSize: 40,
-                                    fontWeight: FontWeight.w900,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Slider(
-                                activeColor:
-                                    !cubit.isMale ? Colors.pink : Colors.blue,
-                                value: cubit.age,
-                                min: 10,
-                                max: 90,
-                                onChanged: (Value) {
-                                  cubit.changeAge(Value);
-                                  print(Value);
-                                })
-                          ],
-                        ),
-                      ),
+
                       SizedBox(height: 15),
                       Row(
                         children: [
@@ -395,7 +368,7 @@ class forumScreen extends StatelessWidget {
                               try {
                                 cubit.insertToDatabase(
                                   name: nameContoller.text,
-                                  age: cubit.age,
+                                  age: ageContoller.text,
                                   weight: weight,
                                   height: height,
                                   BSA: BSAA,
@@ -439,7 +412,7 @@ class forumScreen extends StatelessWidget {
             TextButton(
               child: Text("OK"),
               onPressed: () {
-                navigatePushTo(context, homeLayout());
+                navigatePushReplacementTo(context, homeLayout());
               },
             ),
           ],

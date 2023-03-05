@@ -1,6 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:ColonCancer/model/google_signin.dart';
+import 'package:ColonCancer/modules/show_record/show_record_screen.dart';
 import 'package:ColonCancer/shared/bloc_observer.dart';
 import 'package:ColonCancer/shared/constants/dark_theme.dart';
 import 'package:ColonCancer/shared/constants/light_mode.dart';
@@ -38,6 +39,9 @@ class MyApp extends StatelessWidget {
               theme: lightmode,
               darkTheme: darkTheme,
               themeMode: ThemeMode.light,
+              routes: {
+                '/task-detail': (context) => showRecordScreen(),
+              },
             ),
           );
         },

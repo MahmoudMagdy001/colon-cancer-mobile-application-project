@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable, camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class customTextFormField extends StatelessWidget {
   final TextInputType type;
@@ -16,6 +17,7 @@ class customTextFormField extends StatelessWidget {
   final Function()? suffixpressed;
   final bool isPassword;
   final bool readOnly;
+  final List<TextInputFormatter>? inputFormatters;
   InputBorder? border = const OutlineInputBorder();
 
   customTextFormField({
@@ -34,6 +36,7 @@ class customTextFormField extends StatelessWidget {
     this.suffixpressed,
     this.isPassword = false,
     this.readOnly = false,
+    this.inputFormatters,
   }) : super(key: key);
 
   @override
@@ -48,6 +51,7 @@ class customTextFormField extends StatelessWidget {
       onTap: onTap,
       validator: validator,
       maxLines: maxlines,
+      inputFormatters: inputFormatters,
       decoration: InputDecoration(
         border: border,
         labelText: label,

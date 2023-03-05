@@ -1,12 +1,27 @@
 import 'package:ColonCancer/shared/components/divider/divider.dart';
-
 import 'package:ColonCancer/shared/cubit/cubit.dart';
 import 'package:ColonCancer/shared/styles/colors.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 
 Widget buildTaskItem(Map model, context) => InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushReplacementNamed(
+          context,
+          '/task-detail',
+          arguments: {
+            'id': model['id'],
+            'name': model['name'],
+            'date': model['date'],
+            'age': model['age'],
+            'weight': model['weight'],
+            'height': model['height'],
+            'BSA': model['BSA'],
+            'gender': model['gender'],
+            'smoke': model['smoke'],
+          },
+        );
+      },
       child: Dismissible(
         key: Key(model['id'].toString()),
         onDismissed: (direction) {
@@ -34,21 +49,7 @@ Widget buildTaskItem(Map model, context) => InkWell(
                           color: Colors.black87),
                     ),
                     SizedBox(height: 5),
-
-                    //////////////////// Male or Female ////////////////////////
-                    // if (model['gender'] == 'true')
-                    //   Text(
-                    //     'Male',
-                    //     style: const TextStyle(
-                    //         color: Colors.grey, fontWeight: FontWeight.w700),
-                    //   ),
-                    // if (model['gender'] == 'false')
-                    //   Text(
-                    //     'Female',
-                    //     style: const TextStyle(
-                    //         color: Colors.grey, fontWeight: FontWeight.w700),
-                    //   ),
-                    //////// date of pateint
+                    //////// date of patient
                     Text(
                       '${model['date']}',
                       style: const TextStyle(
