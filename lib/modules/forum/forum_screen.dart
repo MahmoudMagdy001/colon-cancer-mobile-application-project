@@ -2,6 +2,7 @@
 
 import 'dart:math';
 
+import 'package:ColonCancer/shared/components/divider/divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -66,6 +67,7 @@ class forumScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      SizedBox(height: 10),
                       // NAME
                       customTextFormField(
                         type: TextInputType.name,
@@ -171,7 +173,8 @@ class forumScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-
+                      SizedBox(height: 15),
+                      CustomDivider(),
                       SizedBox(height: 15),
                       Row(
                         children: [
@@ -286,8 +289,9 @@ class forumScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 20),
-
+                      SizedBox(height: 15),
+                      CustomDivider(),
+                      SizedBox(height: 15),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -327,6 +331,8 @@ class forumScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 10.0),
+                      CustomDivider(),
+                      const SizedBox(height: 15.0),
                       Container(
                         height: 30,
                         decoration: BoxDecoration(
@@ -348,8 +354,7 @@ class forumScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(height: 10),
-
+                      SizedBox(height: 20),
                       // insert data to local database to show data in records screen
                       Container(
                         width: double.infinity,
