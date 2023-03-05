@@ -75,6 +75,7 @@ class AppCubit extends Cubit<AppStates> {
   void changeBottomNavBar(int index) {
     currentIndex = index;
     if (index == 0) getcancer();
+    if (index == 3) getDataFromDatabase(database);
     emit(AppBottomNavState());
   }
 

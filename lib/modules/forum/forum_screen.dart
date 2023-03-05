@@ -399,6 +399,7 @@ class forumScreen extends StatelessWidget {
                                   gender: gender.toString(),
                                   smoke: smoke.toString(),
                                 );
+                                _showAlertDialogData(context);
                               } catch (error) {
                                 print(error);
                               }
@@ -420,6 +421,26 @@ class forumScreen extends StatelessWidget {
               ),
             );
           }),
+    );
+  }
+
+  void _showAlertDialogData(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Record"),
+          content: Text("Data has been Saved"),
+          actions: [
+            TextButton(
+              child: Text("OK"),
+              onPressed: () {
+                navigatePushReplacementTo(context, homeLayout());
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

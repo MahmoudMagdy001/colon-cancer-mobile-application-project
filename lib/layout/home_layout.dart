@@ -16,40 +16,43 @@ import '../shared/styles/colors.dart';
 class homeLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppCubit, AppStates>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        AppCubit cubit = AppCubit.get(context);
-        return Scaffold(
-          appBar: AppBar(
-            elevation: 5.0,
-            title: CustomText(
-              text: cubit.titles[cubit.currentIndex],
-              fontSize: 20.0,
-              fontWeight: FontWeight.w500,
-              color: Colors.black,
-            ),
-            actions: [
-              IconButton(
-                onPressed: () {
-                  navigatePushReplacementTo(context, forumScreen());
-                },
-                icon: Icon(Icons.add, color: allColor),
+    return BlocProvider(
+      create: (context) => AppCubit()..createDatabase(),
+      child: BlocConsumer<AppCubit, AppStates>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          AppCubit cubit = AppCubit.get(context);
+          return Scaffold(
+            appBar: AppBar(
+              elevation: 5.0,
+              title: CustomText(
+                text: cubit.titles[cubit.currentIndex],
+                fontSize: 20.0,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
               ),
-            ],
-          ),
-          drawer: MyDrawer(),
-          body: cubit.screens[cubit.currentIndex],
-          bottomNavigationBar: BottomNavigationBar(
-            elevation: 10.0,
-            currentIndex: cubit.currentIndex,
-            onTap: (index) {
-              cubit.changeBottomNavBar(index);
-            },
-            items: cubit.bottomItems,
-          ),
-        );
-      },
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    navigatePushReplacementTo(context, forumScreen());
+                  },
+                  icon: Icon(Icons.add, color: allColor),
+                ),
+              ],
+            ),
+            drawer: MyDrawer(),
+            body: cubit.screens[cubit.currentIndex],
+            bottomNavigationBar: BottomNavigationBar(
+              elevation: 10.0,
+              currentIndex: cubit.currentIndex,
+              onTap: (index) {
+                cubit.changeBottomNavBar(index);
+              },
+              items: cubit.bottomItems,
+            ),
+          );
+        },
+      ),
     );
   }
 }
