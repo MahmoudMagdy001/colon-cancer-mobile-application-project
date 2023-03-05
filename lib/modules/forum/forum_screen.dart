@@ -2,6 +2,7 @@
 
 import 'dart:math';
 
+import 'package:ColonCancer/shared/components/navigator_push/navigator_push.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -438,7 +439,7 @@ class forumScreen extends StatelessWidget {
             TextButton(
               child: Text("OK"),
               onPressed: () {
-                navigatePushReplacementTo(context, homeLayout());
+                navigatePushTo(context, homeLayout());
               },
             ),
           ],

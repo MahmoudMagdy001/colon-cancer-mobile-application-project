@@ -1,89 +1,76 @@
+import 'package:ColonCancer/shared/components/divider/divider.dart';
+
 import 'package:ColonCancer/shared/cubit/cubit.dart';
 import 'package:ColonCancer/shared/styles/colors.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 
-Widget buildTaskItem(Map model, context) => Dismissible(
-      key: Key(model['id'].toString()),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Row(
-          children: [
-            const SizedBox(
-              width: 20.0,
-            ),
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '${model['name']}',
-                    style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87),
-                  ),
-                  SizedBox(height: 5),
-
-                  //////// date of pateint
-                  // if (model['gender'] == 'true')
-                  //   Text(
-                  //     'Male',
-                  //     style: const TextStyle(
-                  //         color: Colors.grey, fontWeight: FontWeight.w700),
-                  //   ),
-                  // if (model['gender'] == 'false')
-                  //   Text(
-                  //     'Female',
-                  //     style: const TextStyle(
-                  //         color: Colors.grey, fontWeight: FontWeight.w700),
-                  //   ),
-                  Text(
-                    '${model['date']}',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.grey,
+Widget buildTaskItem(Map model, context) => InkWell(
+      onTap: () {},
+      child: Dismissible(
+        key: Key(model['id'].toString()),
+        onDismissed: (direction) {
+          AppCubit.get(context).deleteData(
+            id: model['id'],
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Row(
+            children: [
+              const SizedBox(
+                width: 20.0,
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${model['name']}',
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 5),
+
+                    //////////////////// Male or Female ////////////////////////
+                    // if (model['gender'] == 'true')
+                    //   Text(
+                    //     'Male',
+                    //     style: const TextStyle(
+                    //         color: Colors.grey, fontWeight: FontWeight.w700),
+                    //   ),
+                    // if (model['gender'] == 'false')
+                    //   Text(
+                    //     'Female',
+                    //     style: const TextStyle(
+                    //         color: Colors.grey, fontWeight: FontWeight.w700),
+                    //   ),
+                    //////// date of pateint
+                    Text(
+                      '${model['date']}',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(
-              width: 20.0,
-            ),
-            // IconButton(
-            //   onPressed: () {
-            //     // AppCubit.get(context).updateData(
-            //     //   status: 'done',
-            //     //   id: model['id'],
-            //     // );
-            //   },
-            //   icon: const Icon(
-            //     Icons.check_box_rounded,
-            //     color: Colors.green,
-            //   ),
-            // ),
-            IconButton(
-              onPressed: () {
-                // AppCubit.get(context).updateData(
-                //   status: 'archive',
-                //   id: model['id'],
-                // );
-              },
-              icon: Icon(
-                Icons.download,
-                color: allColor,
+              const SizedBox(width: 20.0),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.download,
+                  color: allColor,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-      onDismissed: (direction) {
-        AppCubit.get(context).deleteData(
-          id: model['id'],
-        );
-      },
     );
 
 Widget tasksBuilder({required List<Map> data}) => ConditionalBuilder(
@@ -91,7 +78,7 @@ Widget tasksBuilder({required List<Map> data}) => ConditionalBuilder(
       builder: (context) => ListView.separated(
         physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) => buildTaskItem(data[index], context),
-        separatorBuilder: (context, index) => Divider(),
+        separatorBuilder: (context, index) => CustomDivider(),
         itemCount: data.length,
       ),
       fallback: (context) => Center(
