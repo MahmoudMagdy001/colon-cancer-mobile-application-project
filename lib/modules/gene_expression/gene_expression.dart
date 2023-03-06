@@ -1,5 +1,8 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last, library_private_types_in_public_api
 
+import 'package:ColonCancer/shared/components/divider/divider.dart';
+import 'package:ColonCancer/shared/components/text_form_field/text_form_field.dart';
+import 'package:ColonCancer/shared/cubit/cubit.dart';
 import 'package:flutter/material.dart';
 
 import '../../shared/components/button/button.dart';
@@ -29,6 +32,10 @@ class _MyTabbedPageState extends State<MyTabbedPage>
   }
 
   var geneController = TextEditingController();
+  var TumorController = TextEditingController();
+
+  String _selectedItem = 'Item 1';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,9 +111,50 @@ class _MyTabbedPageState extends State<MyTabbedPage>
               ],
             ),
           ),
-          Container(
-            child: const Center(
-              child: Text('Tumor Markers content'),
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: Column(
+              children: [
+                SizedBox(height: 10),
+                CustomDivider(),
+                SizedBox(height: 10),
+                customTextFormField(
+                  type: TextInputType.text,
+                  validator: (value) {},
+                  controller: TumorController,
+                  label: 'First',
+                  prefix: Icons.person,
+                ),
+                SizedBox(height: 10),
+                customTextFormField(
+                  type: TextInputType.text,
+                  validator: (value) {},
+                  controller: TumorController,
+                  label: 'Secound',
+                  prefix: Icons.person,
+                ),
+                SizedBox(height: 10),
+                customTextFormField(
+                  type: TextInputType.text,
+                  validator: (value) {},
+                  controller: TumorController,
+                  label: 'Third',
+                  prefix: Icons.person,
+                ),
+                SizedBox(height: 10),
+                customTextFormField(
+                  type: TextInputType.text,
+                  validator: (value) {},
+                  controller: TumorController,
+                  label: 'Fourth',
+                  prefix: Icons.person,
+                ),
+                SizedBox(height: 20),
+                CustomButton(
+                  label: 'SHOW RESULT',
+                  onPressed: () {},
+                ),
+              ],
             ),
           ),
         ],
