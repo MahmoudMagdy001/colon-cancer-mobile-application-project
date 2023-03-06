@@ -59,7 +59,7 @@ class showRecordScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 10),
             Text(
               'Age: $age',
               style: TextStyle(
@@ -67,7 +67,7 @@ class showRecordScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 10),
             Text(
               'Weight: $weight',
               style: TextStyle(
@@ -75,7 +75,7 @@ class showRecordScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 10),
             Text(
               'Height: $height',
               style: TextStyle(
@@ -83,7 +83,7 @@ class showRecordScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 10),
             Text(
               'BSA: $BSA',
               style: TextStyle(
@@ -91,7 +91,7 @@ class showRecordScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 10),
             if (gender == 'true')
               Text(
                 'Gender: Male',
@@ -108,7 +108,7 @@ class showRecordScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 10),
             if (smoke == '1')
               Text(
                 'Smoke: Smoker',
