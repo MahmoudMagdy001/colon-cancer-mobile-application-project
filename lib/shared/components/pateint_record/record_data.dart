@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 Widget buildTaskItem(Map model, context) => InkWell(
       onTap: () {
-        Navigator.pushReplacementNamed(
+        Navigator.pushNamed(
           context,
           '/task-detail',
           arguments: {

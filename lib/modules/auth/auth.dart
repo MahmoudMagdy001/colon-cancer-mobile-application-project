@@ -3,6 +3,7 @@
 import 'package:ColonCancer/layout/home_layout.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
 
@@ -60,6 +61,10 @@ class _authModule extends State<authModule>
     return Scaffold(
       appBar: AppBar(
         backgroundColor: backGroundColor,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: backGroundColor,
+          statusBarBrightness: Brightness.dark,
+        ),
         title: Row(
           children: [
             Image.asset(
@@ -166,7 +171,7 @@ class _authModule extends State<authModule>
                       type: TextInputType.text,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Your name must not be empty';
+                          return 'Please ENTRE your name';
                         }
                         return null;
                       },
@@ -182,7 +187,7 @@ class _authModule extends State<authModule>
                       type: TextInputType.emailAddress,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'E-mail must not be empty';
+                          return 'Please ENTRE your E-mail';
                         }
                         return null;
                       },
@@ -210,7 +215,7 @@ class _authModule extends State<authModule>
                       },
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Password must not be empty';
+                          return 'Please ENTRE your password';
                         }
                         return null;
                       },
@@ -408,9 +413,43 @@ class _authModule extends State<authModule>
       _showAlertDialogSignup(context);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Sign up"),
+              content: Text('The password provided is too weak.'),
+              actions: [
+                TextButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+        // print('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Sign up"),
+              content: Text('The account already exists for that email.'),
+              actions: [
+                TextButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+        // print('The account already exists for that email.');
       }
     } catch (e) {
       print(e);

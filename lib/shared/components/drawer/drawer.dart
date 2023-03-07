@@ -1,6 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors, use_build_context_synchronously, unnecessary_cast, unused_local_variable
 
 import 'package:ColonCancer/model/google_signin.dart';
+import 'package:ColonCancer/shared/components/navigator_push/navigator_push.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,12 +37,12 @@ class MyDrawer extends StatelessWidget {
                 accountName: CustomText(
                   text: user.displayName ?? '',
                   color: allColor,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.bold,
                 ),
                 accountEmail: CustomText(
                   text: 'Email: ${user.email ?? ''}',
                   color: allColor,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.bold,
                 ),
                 currentAccountPicture: CircleAvatar(
                   foregroundColor: Colors.white,
@@ -63,7 +64,7 @@ class MyDrawer extends StatelessWidget {
                   color: drawerColor,
                 ),
                 onTap: () {
-                  navigatePushReplacementTo(context, forumScreen());
+                  navigatePushTo(context, forumScreen());
                 },
               ),
               ListTile(

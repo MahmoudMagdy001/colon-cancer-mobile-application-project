@@ -18,23 +18,24 @@ class showRecordScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: [
-            IconButton(
-              onPressed: () {
-                navigatePushReplacementTo(context, homeLayout());
-              },
-              icon: Icon(Icons.arrow_back_ios_new),
-            ),
+        title:
+            //  Row(
+            //   children: [
+            //     IconButton(
+            //       onPressed: () {
+            //         navigatePushReplacementTo(context, homeLayout());
+            //       },
+            //       icon: Icon(Icons.arrow_back_ios_new),
+            //     ),
             Text(
-              'Patient #$id',
-              style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black87),
-            ),
-          ],
+          'Patient #$id',
+          style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87),
         ),
+        //   ],
+        // ),
         elevation: 5.0,
       ),
       body: Padding(

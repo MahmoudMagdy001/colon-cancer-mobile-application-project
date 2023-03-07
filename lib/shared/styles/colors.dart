@@ -10,6 +10,6 @@ final Color allColor = HexColor('#2A2AC0');
 //for drawer button
 final Color? drawerColor = Colors.grey[800];
 
-const MaterialColor primaryColor = Colors.blue;
+const MaterialColor primaryColor = Colors.blueGrey;
 
 const MaterialColor primaryColordark = Colors.grey;

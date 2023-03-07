@@ -1,5 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors, camel_case_types, unused_local_variable, prefer_const_constructors, must_be_immutable, avoid_print, unused_import
 
+import 'package:ColonCancer/shared/components/navigator_push/navigator_push.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,7 +37,7 @@ class homeLayout extends StatelessWidget {
               actions: [
                 IconButton(
                   onPressed: () {
-                    navigatePushReplacementTo(context, forumScreen());
+                    navigatePushTo(context, forumScreen());
                   },
                   icon: Icon(Icons.add, color: allColor),
                 ),

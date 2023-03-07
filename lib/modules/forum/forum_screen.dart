@@ -40,19 +40,9 @@ class forumScreen extends StatelessWidget {
                 elevation: 5.0,
                 title: Row(
                   children: [
-                    IconButton(
-                      onPressed: () {
-                        navigatePushReplacementTo(context, homeLayout());
-                      },
-                      color: allColor,
-                      icon: const Icon(
-                        Icons.arrow_back_ios_new,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
                     CustomText(
                       text: 'Forum',
-                      color: allColor,
+                      color: Colors.black87,
                       fontSize: 20.0,
                       fontWeight: FontWeight.w500,
                     ),

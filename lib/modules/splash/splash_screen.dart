@@ -2,8 +2,8 @@
 
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 
 import '../../shared/components/defult_text/text.dart';
 import '../../shared/cubit/cubit.dart';
@@ -16,24 +16,34 @@ class splashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(
       listener: (BuildContext context, state) {},
-      builder: (context, state) => EasySplashScreen(
-        logo: Image.asset('images/colon.png'),
-        logoWidth: 100.0,
-        title: defaultText(
-            text: 'COLON CANCER APP',
-            color: allColor,
-            fontSize: 20.0,
-            fontWeight: FontWeight.w900),
-        backgroundColor: backGroundColor,
-        showLoader: true,
-        loadingText: defaultText(
-            text: 'Loading...',
-            color: allColor,
-            fontWeight: FontWeight.w500,
-            fontSize: 17.0),
-        loaderColor: allColor,
-        navigator: onBoardingScreen(),
-        durationInSeconds: 4,
+      builder: (context, state) => Scaffold(
+        appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: backGroundColor,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: backGroundColor,
+            statusBarIconBrightness: Brightness.dark,
+          ),
+        ),
+        body: EasySplashScreen(
+          logo: Image.asset('images/colon.png'),
+          logoWidth: 100.0,
+          title: defaultText(
+              text: 'COLON CANCER APP',
+              color: allColor,
+              fontSize: 20.0,
+              fontWeight: FontWeight.w900),
+          backgroundColor: backGroundColor,
+          showLoader: true,
+          loadingText: defaultText(
+              text: 'Loading...',
+              color: allColor,
+              fontWeight: FontWeight.w500,
+              fontSize: 17.0),
+          loaderColor: allColor,
+          navigator: onBoardingScreen(),
+          durationInSeconds: 5,
+        ),
       ),
     );
   }
