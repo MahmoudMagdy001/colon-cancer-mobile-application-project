@@ -38,15 +38,11 @@ class forumScreen extends StatelessWidget {
             return Scaffold(
               appBar: AppBar(
                 elevation: 5.0,
-                title: Row(
-                  children: [
-                    CustomText(
-                      text: 'Forum',
-                      color: Colors.black87,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ],
+                title: CustomText(
+                  text: 'Forum',
+                  color: Colors.black87,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               body: SingleChildScrollView(

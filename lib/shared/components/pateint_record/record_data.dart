@@ -48,8 +48,11 @@ Widget buildTaskItem(Map model, context) => InkWell(
                           fontWeight: FontWeight.bold,
                           color: Colors.black87),
                     ),
+
                     SizedBox(height: 5),
+
                     //////// date of patient
+
                     Text(
                       '${model['date']}',
                       style: const TextStyle(

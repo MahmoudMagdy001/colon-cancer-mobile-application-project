@@ -35,12 +35,12 @@ class homeLayout extends StatelessWidget {
                 color: Colors.black,
               ),
               actions: [
-                IconButton(
-                  onPressed: () {
-                    navigatePushTo(context, forumScreen());
-                  },
-                  icon: Icon(Icons.add, color: allColor),
-                ),
+                // IconButton(
+                //   onPressed: () {
+
+                //   },
+                //   icon: Icon(Icons.add, color: allColor),
+                // ),
               ],
             ),
             drawer: MyDrawer(),
