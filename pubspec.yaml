@@ -51,6 +51,7 @@ dependencies:
   google_sign_in: ^6.0.1
   provider: ^6.0.5
   cloud_firestore: ^4.4.3
+  pdf: ^3.9.0
   
   
 
