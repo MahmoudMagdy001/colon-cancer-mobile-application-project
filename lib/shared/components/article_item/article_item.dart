@@ -7,7 +7,6 @@ import '../../../modules/web_view/web_view_screen.dart';
 import '../divider/divider.dart';
 import '../navigator_push/navigator_push.dart';
 
-
 Widget buildArticleItem(article, context) => InkWell(
       onTap: () {
         navigatePushTo(context, WebViewScreen(article['url']));
@@ -16,20 +15,20 @@ Widget buildArticleItem(article, context) => InkWell(
         padding: const EdgeInsets.all(20.0),
         child: Row(
           children: [
-            Container(
-              width: 120.0,
-              height: 120.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                image: DecorationImage(
-                  image: NetworkImage('${article['urlToImage']}'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            const SizedBox(
-              width: 20.0,
-            ),
+            // Container(
+            //   width: 120.0,
+            //   height: 120.0,
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(10.0),
+            //     image: DecorationImage(
+            //       image: NetworkImage('${article['urlToImage']}'),
+            //       fit: BoxFit.cover,
+            //     ),
+            //   ),
+            // ),
+            // const SizedBox(
+            //   width: 20.0,
+            // ),
             Expanded(
               child: Container(
                 height: 120.0,

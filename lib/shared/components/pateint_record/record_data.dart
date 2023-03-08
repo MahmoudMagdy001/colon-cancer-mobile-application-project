@@ -22,56 +22,61 @@ Widget buildTaskItem(Map model, context) => InkWell(
           },
         );
       },
-      child: Dismissible(
-        key: Key(model['id'].toString()),
-        onDismissed: (direction) {
-          AppCubit.get(context).deleteData(
-            id: model['id'],
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Row(
-            children: [
-              const SizedBox(
-                width: 20.0,
-              ),
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${model['name']}',
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87),
-                    ),
-
-                    SizedBox(height: 5),
-
-                    //////// date of patient
-
-                    Text(
-                      '${model['date']}',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Colors.grey,
+      child: Card(
+        child: Dismissible(
+          key: Key(model['id'].toString()),
+          onDismissed: (direction) {
+            AppCubit.get(context).deleteData(
+              id: model['id'],
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  '${model['id']}-',
+                  style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87),
+                ),
+                const SizedBox(width: 10.0),
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${model['name']}',
+                        style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87),
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 5),
+                      //////// date of patient
+                      Text(
+                        '${model['date']}',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(width: 20.0),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.download,
-                  color: allColor,
+                const SizedBox(width: 20.0),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.download,
+                    color: allColor,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
