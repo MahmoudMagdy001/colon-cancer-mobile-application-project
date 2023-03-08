@@ -87,7 +87,7 @@ Widget tasksBuilder({required List<Map> data}) => ConditionalBuilder(
       builder: (context) => ListView.separated(
         physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) => buildTaskItem(data[index], context),
-        separatorBuilder: (context, index) => CustomDivider(),
+        separatorBuilder: (context, index) => SizedBox(height: 5),
         itemCount: data.length,
       ),
       fallback: (context) => Center(

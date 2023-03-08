@@ -11,55 +11,57 @@ Widget buildArticleItem(article, context) => InkWell(
       onTap: () {
         navigatePushTo(context, WebViewScreen(article['url']));
       },
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Row(
-          children: [
-            // Container(
-            //   width: 120.0,
-            //   height: 120.0,
-            //   decoration: BoxDecoration(
-            //     borderRadius: BorderRadius.circular(10.0),
-            //     image: DecorationImage(
-            //       image: NetworkImage('${article['urlToImage']}'),
-            //       fit: BoxFit.cover,
-            //     ),
-            //   ),
-            // ),
-            // const SizedBox(
-            //   width: 20.0,
-            // ),
-            Expanded(
-              child: Container(
-                height: 120.0,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        '${article['title']}',
-                        style: const TextStyle(
-                          color: Colors.black87,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Row(
+            children: [
+              // Container(
+              //   width: 120.0,
+              //   height: 120.0,
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(10.0),
+              //     image: DecorationImage(
+              //       image: NetworkImage('${article['urlToImage']}'),
+              //       fit: BoxFit.cover,
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(
+              //   width: 20.0,
+              // ),
+              Expanded(
+                child: Container(
+                  height: 120.0,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          '${article['title']}',
+                          style: const TextStyle(
+                            color: Colors.black87,
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
                       ),
-                    ),
-                    Text(
-                      '${article['publishedAt']}',
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    )
-                  ],
+                      Text(
+                        '${article['publishedAt']}',
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -68,7 +70,7 @@ Widget articleBuilder(list, context, {isSearch = false}) => ConditionalBuilder(
     builder: (context) => ListView.separated(
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) => buildArticleItem(list[index], context),
-        separatorBuilder: (context, index) => CustomDivider(),
+        separatorBuilder: (context, index) => SizedBox(height: 5),
         itemCount: list.length),
     fallback: (context) => isSearch
         ? Container()
