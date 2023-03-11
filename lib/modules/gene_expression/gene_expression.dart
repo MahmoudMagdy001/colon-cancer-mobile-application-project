@@ -151,7 +151,7 @@ class _MyTabbedPageState extends State<MyTabbedPage> {
                                 fontFamily: 'Lato'),
                           ),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue[600],
+                            backgroundColor: allColor,
                             padding: EdgeInsets.symmetric(
                                 vertical: 16.0, horizontal: 30.0),
                             shape: RoundedRectangleBorder(

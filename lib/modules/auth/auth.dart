@@ -408,8 +408,11 @@ class _authModule extends State<authModule>
 
   void _signUp() async {
     try {
+      FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
       CollectionReference usersref =
           FirebaseFirestore.instance.collection("users");
+
       usersref.add({
         'username': nameControllerSignup.text,
         'email': emailControllerSignup.text,
