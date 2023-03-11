@@ -2,6 +2,7 @@
 
 import 'package:ColonCancer/model/google_signin.dart';
 import 'package:ColonCancer/modules/show_record/show_record_screen.dart';
+import 'package:ColonCancer/modules/tumor_marker/tumor_marker_screen.dart';
 import 'package:ColonCancer/shared/bloc_observer.dart';
 import 'package:ColonCancer/shared/constants/dark_theme.dart';
 import 'package:ColonCancer/shared/constants/light_mode.dart';
@@ -17,10 +18,10 @@ import 'modules/splash/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
   runApp(MyApp());
-  await Firebase.initializeApp();
 }
 
 class MyApp extends StatelessWidget {
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
               themeMode: ThemeMode.light,
               routes: {
                 '/task-detail': (context) => showRecordScreen(),
+                '/tumor-marker': (context) => TumorMarkerScreen(),
               },
             ),
           );

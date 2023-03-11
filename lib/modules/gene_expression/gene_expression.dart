@@ -111,52 +111,6 @@ class _MyTabbedPageState extends State<MyTabbedPage>
               ],
             ),
           ),
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: Column(
-              children: [
-                SizedBox(height: 10),
-                CustomDivider(),
-                SizedBox(height: 10),
-                customTextFormField(
-                  type: TextInputType.text,
-                  validator: (value) {},
-                  controller: TumorController,
-                  label: 'First',
-                  prefix: Icons.person,
-                ),
-                SizedBox(height: 10),
-                customTextFormField(
-                  type: TextInputType.text,
-                  validator: (value) {},
-                  controller: TumorController,
-                  label: 'Secound',
-                  prefix: Icons.person,
-                ),
-                SizedBox(height: 10),
-                customTextFormField(
-                  type: TextInputType.text,
-                  validator: (value) {},
-                  controller: TumorController,
-                  label: 'Third',
-                  prefix: Icons.person,
-                ),
-                SizedBox(height: 10),
-                customTextFormField(
-                  type: TextInputType.text,
-                  validator: (value) {},
-                  controller: TumorController,
-                  label: 'Fourth',
-                  prefix: Icons.person,
-                ),
-                SizedBox(height: 20),
-                CustomButton(
-                  label: 'SHOW RESULT',
-                  onPressed: () {},
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     );

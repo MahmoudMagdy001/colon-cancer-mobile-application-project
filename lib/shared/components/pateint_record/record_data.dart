@@ -1,4 +1,3 @@
-import 'package:ColonCancer/shared/components/divider/divider.dart';
 import 'package:ColonCancer/shared/cubit/cubit.dart';
 import 'package:ColonCancer/shared/styles/colors.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
@@ -19,6 +18,11 @@ Widget buildTaskItem(Map model, context) => InkWell(
             'BSA': model['BSA'],
             'gender': model['gender'],
             'smoke': model['smoke'],
+            'one': model['one'],
+            'two': model['two'],
+            'three': model['three'],
+            'four': model['four'],
+            'five': model['five'],
           },
         );
       },

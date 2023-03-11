@@ -4,7 +4,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 
 import '../../../modules/web_view/web_view_screen.dart';
-import '../divider/divider.dart';
+
 import '../navigator_push/navigator_push.dart';
 
 Widget buildArticleItem(article, context) => InkWell(

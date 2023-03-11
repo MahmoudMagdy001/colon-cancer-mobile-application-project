@@ -17,8 +17,14 @@ class customTextFormField extends StatelessWidget {
   final Function()? suffixpressed;
   final bool isPassword;
   final bool readOnly;
+  final FontWeight? fontWeight;
+  final Color? labelcolor;
+  final Color? prefixcolor;
+  final double? labelsize;
+  final String? suffixlabel;
   final List<TextInputFormatter>? inputFormatters;
-  InputBorder? border = const OutlineInputBorder();
+  InputBorder? border;
+  InputBorder? focusedBorder;
 
   customTextFormField({
     Key? key,
@@ -36,6 +42,12 @@ class customTextFormField extends StatelessWidget {
     this.suffixpressed,
     this.isPassword = false,
     this.readOnly = false,
+    this.fontWeight,
+    this.labelcolor,
+    this.prefixcolor,
+    this.labelsize,
+    this.suffixlabel,
+    this.focusedBorder,
     this.inputFormatters,
   }) : super(key: key);
 
@@ -53,8 +65,13 @@ class customTextFormField extends StatelessWidget {
       maxLines: maxlines,
       inputFormatters: inputFormatters,
       decoration: InputDecoration(
+        focusedBorder: focusedBorder,
+        suffixText: suffixlabel,
+        prefixIconColor: prefixcolor,
         border: border,
         labelText: label,
+        labelStyle: TextStyle(
+            fontWeight: fontWeight, color: labelcolor, fontSize: labelsize),
         prefixIcon: Icon(prefix),
         suffixIcon: IconButton(
           onPressed: suffixpressed,

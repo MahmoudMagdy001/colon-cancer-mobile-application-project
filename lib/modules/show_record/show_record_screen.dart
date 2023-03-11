@@ -1,5 +1,7 @@
-import 'package:ColonCancer/layout/home_layout.dart';
-import 'package:ColonCancer/shared/components/navigator_push_replacment/navigator_replacment.dart';
+import 'package:ColonCancer/shared/components/button/button.dart';
+import 'package:ColonCancer/shared/components/chart/char_screen.dart';
+
+import 'package:ColonCancer/shared/components/sized_box/sized_box.dart';
 import 'package:flutter/material.dart';
 
 class showRecordScreen extends StatelessWidget {
@@ -15,19 +17,15 @@ class showRecordScreen extends StatelessWidget {
     final String BSA = args['BSA'];
     final String gender = args['gender'];
     final String smoke = args['smoke'];
+    final String one = args['one'];
+    final String two = args['two'];
+    final String three = args['three'];
+    final String four = args['four'];
+    final String five = args['five'];
 
     return Scaffold(
       appBar: AppBar(
-        title:
-            //  Row(
-            //   children: [
-            //     IconButton(
-            //       onPressed: () {
-            //         navigatePushReplacementTo(context, homeLayout());
-            //       },
-            //       icon: Icon(Icons.arrow_back_ios_new),
-            //     ),
-            Text(
+        title: Text(
           'Patient #$id',
           style: TextStyle(
               fontSize: 20.0,
@@ -40,93 +38,137 @@ class showRecordScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Text(
-                'Name: $name',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Text(
+                  'Name: $name',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Date: $date',
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Age: $age',
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Weight: $weight',
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Height: $height',
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'BSA: $BSA',
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            if (gender == 'true')
+              SizedBox(height: 10),
               Text(
-                'Gender: Male',
+                'Date: $date',
                 style: TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            if (gender == 'false')
+              SizedBox(height: 10),
               Text(
-                'Gender: Female',
+                'Age: $age',
                 style: TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            SizedBox(height: 10),
-            if (smoke == '1')
+              SizedBox(height: 10),
               Text(
-                'Smoke: Smoker',
+                'Weight: $weight',
                 style: TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            if (smoke == '2')
+              SizedBox(height: 10),
               Text(
-                'Smoke: Not Smoker',
+                'Height: $height',
                 style: TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-          ],
+              SizedBox(height: 10),
+              Text(
+                'BSA: $BSA',
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 10),
+              if (gender == 'true')
+                Text(
+                  'Gender: Male',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              if (gender == 'false')
+                Text(
+                  'Gender: Female',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              SizedBox(height: 10),
+              if (smoke == '1')
+                Text(
+                  'Smoke: Smoker',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              if (smoke == '2')
+                Text(
+                  'Smoke: Not Smoker',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              10.ph,
+              Container(
+                width: double.infinity,
+                height: 320,
+                child: chartScreen(),
+              ),
+              CustomButton(
+                label: 'Add Tumor Marker',
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/tumor-marker',
+                    arguments: {
+                      'id': id,
+                      'name': name,
+                      'age': age,
+                      'gender': gender,
+                      'one': one,
+                      'two': two,
+                      'three': three,
+                      'four': four,
+                      'five': five,
+                    },
+                  );
+
+                  // Navigator.pushNamed(
+                  //   context,
+                  //   '/tumor-marker',
+                  //   arguments: {
+                  //     'id': model['id'],
+                  //     'name': model['name'],
+                  //     'date': model['date'],
+                  //     'age': model['age'],
+                  //     'weight': model['weight'],
+                  //     'height': model['height'],
+                  //     'BSA': model['BSA'],
+                  //     'gender': model['gender'],
+                  //     'smoke': model['smoke'],
+                  //   },
+                  // );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -191,7 +191,7 @@ class AppCubit extends Cubit<AppStates> {
         print('database created ');
         database
             .execute(
-                'CREATE TABLE forum (id INTEGER PRIMARY KEY, name TEXT,age TEXT, weight TEXT, height TEXT, BSA TEXT, gender TEXT, smoke TEXT, date TEXT)')
+                'CREATE TABLE forum (id INTEGER PRIMARY KEY, name TEXT,age TEXT, weight TEXT, height TEXT, BSA TEXT, gender TEXT, smoke TEXT, date TEXT, one TEXT, two TEXT, three TEXT, four TEXT, five TEXT)')
             .then((value) {
           print('table created ');
         }).catchError((error) {
@@ -233,7 +233,7 @@ class AppCubit extends Cubit<AppStates> {
     await database.transaction((txn) async {
       txn
           .rawInsert(
-        'INSERT INTO forum(name, age, weight, height, BSA, gender, smoke, date) VALUES ("$name","$age","$weight","$height","$BSA","$gender","$smoke", "$date")',
+        'INSERT INTO forum(name, age, weight, height, BSA, gender, smoke, date, one, two, three, four, five) VALUES ("$name","$age","$weight","$height","$BSA","$gender","$smoke", "$date", "0", "0", "0", "0", "0")',
       )
           .then((value) {
         print('$value inserted successfully');
@@ -256,14 +256,21 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  // void updateData({
-  //   required String status,
-  //   required int id,
-  // }) async {
-  //   database.rawUpdate(
-  //       'UPDATE forum SET status = ? WHERE id = ?', [status, id]).then((value) {
-  //     getDataFromDatabase(database);
-  //     emit(AppUpdateDataBaseState());
-  //   });
-  // }
+  void updateData({
+    required int id,
+    required String one,
+    required String two,
+    required String three,
+    required String four,
+    required String five,
+  }) async {
+    database.rawUpdate(
+        'UPDATE forum SET one = ?, two = ?, three = ?, four = ?, five = ? WHERE id = ?',
+        [one, two, three, four, five, id]).then((value) {
+      getDataFromDatabase(database);
+      emit(AppUpdateDataBaseState());
+    }).catchError((error) {
+      print('error when updating record ${error.toString()}');
+    });
+  }
 }

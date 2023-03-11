@@ -5,10 +5,10 @@ packages:
     dependency: transitive
     description:
       name: _flutterfire_internals
-      sha256: "64fcb0dbca4386356386c085142fa6e79c00a3326ceaa778a2d25f5d9ba61441"
+      sha256: cb3a948a1eebbf8efd987c43f95418269930e912a88bc7b6a5a7658423133635
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.16"
+    version: "1.0.17"
   archive:
     dependency: transitive
     description:
@@ -237,10 +237,10 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_core
-      sha256: fe30ac230f12f8836bb97e6e09197340d3c584526825b1746ea362a82e1e43f7
+      sha256: "1c121a478af23755b0b93fd4aa70d3bd32a587dd51ef0a3979091ac0d2317d32"
       url: "https://pub.dev"
     source: hosted
-    version: "2.7.0"
+    version: "2.7.1"
   firebase_core_platform_interface:
     dependency: transitive
     description:
@@ -253,10 +253,34 @@ packages:
     dependency: transitive
     description:
       name: firebase_core_web
-      sha256: "291fbcace608aca6c860652e1358ef89752be8cc3ef227f8bbcd1e62775b833a"
+      sha256: "0c1cf1f1022d2245ac117443bb95207952ca770281524d2908e323bc063fb8ff"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.1"
+    version: "2.2.2"
+  firebase_database:
+    dependency: "direct main"
+    description:
+      name: firebase_database
+      sha256: cedfea0a7482faaff3eff065392f72b3127521b527aaae97fd435a7547f1844c
+      url: "https://pub.dev"
+    source: hosted
+    version: "10.0.15"
+  firebase_database_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_database_platform_interface
+      sha256: "988b902af4ac1063a5dd85c3bfa5f712c9e7402612bafcff15571035e46409c0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.2+22"
+  firebase_database_web:
+    dependency: transitive
+    description:
+      name: firebase_database_web
+      sha256: "2d4bb8ddfaab6e3a84c8d263e9a61925da286e93dccf761dfc7f94d0e18b1152"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.1+24"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -765,6 +789,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  syncfusion_flutter_charts:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_charts
+      sha256: "51c8ed241312bd01bfd242979249d3a69ea0a46486509275dc10b1c9d288f027"
+      url: "https://pub.dev"
+    source: hosted
+    version: "20.4.53"
+  syncfusion_flutter_core:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_core
+      sha256: ab3eac31638e80663eae19c71e362012e1e2f67dfd527dc5c07d9397cd4238f2
+      url: "https://pub.dev"
+    source: hosted
+    version: "20.4.53"
   synchronized:
     dependency: transitive
     description:

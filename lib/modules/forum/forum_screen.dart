@@ -3,6 +3,8 @@
 import 'dart:math';
 
 import 'package:ColonCancer/shared/components/divider/divider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,6 +37,18 @@ class forumScreen extends StatelessWidget {
             var gender = cubit.isMale;
             var smoke = cubit.isSelected;
             var date = DateFormat.yMMMd().format(DateTime.now());
+
+            // getData() async {
+            //   FirebaseFirestore.instance
+            //       .collection("forum")
+            //       .snapshots()
+            //       .listen((event) {
+            //     event.docs.forEach((element) {
+            //       print(element.data());
+            //     });
+            //   });
+            // }
+
             return Scaffold(
               appBar: AppBar(
                 elevation: 5.0,
@@ -357,6 +371,7 @@ class forumScreen extends StatelessWidget {
                           onPressed: () {
                             if (formkey.currentState!.validate()) {
                               try {
+                                // getData();
                                 cubit.insertToDatabase(
                                   name: nameContoller.text,
                                   age: ageContoller.text,
