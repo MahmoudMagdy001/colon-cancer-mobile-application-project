@@ -1,11 +1,7 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:ColonCancer/shared/components/button/button.dart';
-
 import 'package:ColonCancer/shared/components/sized_box/sized_box.dart';
-import 'package:ColonCancer/shared/cubit/test.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 class showRecordScreen extends StatelessWidget {
   @override

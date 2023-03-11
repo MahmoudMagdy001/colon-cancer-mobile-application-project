@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -30,5 +31,12 @@ class DatabaseHelper {
     await db.execute('''CREATE TABLE Tumor (
       id INTEGER PRIMARY KEY, name TEXT, one TEXT, two TEXT, three TEXT, four TEXT, five TEXT
       )''');
+  }
+
+  Future<List<String>> getForumNames() async {
+    final dbHelper = DatabaseHelper();
+    final db = await dbHelper.database;
+    final result = await db.query('forum', columns: ['name']);
+    return result.map((e) => e['name'] as String).toList();
   }
 }

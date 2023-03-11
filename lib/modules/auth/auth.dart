@@ -88,7 +88,7 @@ class _authModule extends State<authModule>
           // ignore: prefer_const_literals_to_create_immutables
           tabs: [
             Tab(text: 'SIGN UP'),
-            Tab(text: 'SIGN IN'),
+            Tab(text: 'LOG IN'),
           ],
         ),
       ),
@@ -266,7 +266,7 @@ class _authModule extends State<authModule>
                   children: [
                     SizedBox(height: 15),
                     Text(
-                      'Sign in to your account.',
+                      'Log in to your account.',
                       style: TextStyle(fontSize: 22.0),
                     ),
                     SizedBox(height: 15),
@@ -380,7 +380,7 @@ class _authModule extends State<authModule>
                     ),
                     SizedBox(height: 30),
                     CustomButton(
-                      label: 'Sign in ',
+                      label: 'LOG IN',
                       onPressed: () async {
                         if (formkeylogin.currentState!.validate()) {
                           try {
