@@ -35,7 +35,7 @@ Widget buildArticleItem(article, context) => InkWell(
                 child: Container(
                   height: 120.0,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Expanded(
