@@ -3,6 +3,8 @@
 import 'package:ColonCancer/shared/components/sized_box/sized_box.dart';
 import 'package:ColonCancer/shared/cubit/cubit.dart';
 import 'package:ColonCancer/shared/cubit/states.dart';
+import 'package:ColonCancer/shared/cubit/test.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,33 +20,16 @@ class TumorMarkerScreen extends StatelessWidget {
   var FourController = TextEditingController();
   var FiveController = TextEditingController();
 
+  String? onetext;
+
   @override
   Widget build(BuildContext context) {
-    final Map args = ModalRoute.of(context)!.settings.arguments as Map;
-    final int id = args['id'];
-    final String name = args['name'];
-    final String age = args['age'];
-    final String gender = args['gender'];
-    final String one = args['one'];
-    final String two = args['two'];
-    final String three = args['three'];
-    final String four = args['four'];
-    final String five = args['five'];
-
-    // OneController.text = '$one';
-    // TwoController.text = '$two';
-    // ThreeController.text = '$three';
-    // FourController.text = '$four';
-    // FiveController.text = '$five';
-
-    return BlocProvider(
-      create: (BuildContext context) => AppCubit()
-        ..updateData(
-            id: id, one: one, two: two, three: three, four: four, five: five),
-      child: BlocConsumer<AppCubit, AppStates>(
+    return BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          var cubit = AppCubit.get(context);
+          final Map args = ModalRoute.of(context)!.settings.arguments as Map;
+          final int id = args['id'];
+          final String name = args['name'];
 
           return Scaffold(
             appBar: AppBar(
@@ -89,6 +74,9 @@ class TumorMarkerScreen extends StatelessWidget {
                         type: TextInputType.number,
                         validator: (value) {},
                         controller: OneController,
+                        onChange: (value) {
+                          value = onetext!;
+                        },
                         label: 'CEA',
                         prefix: Icons.numbers_rounded,
                         suffixlabel: 'IU/ml',
@@ -132,15 +120,18 @@ class TumorMarkerScreen extends StatelessWidget {
                       180.ph,
                       CustomButton(
                         label: 'SHOW RESULT',
-                        onPressed: () {
-                          cubit.updateData(
-                            id: id,
-                            one: OneController.text,
-                            two: TwoController.text,
-                            three: ThreeController.text,
-                            four: FourController.text,
-                            five: FiveController.text,
-                          );
+                        onPressed: () async {
+                          final dbHelper = DatabaseHelper();
+                          final db = await dbHelper.database;
+
+                          await db.insert('Tumor', {
+                            'id': id,
+                            'one': onetext,
+                            // 'two': TwoController.text,
+                            // 'three': ThreeController,
+                            // 'four': FourController,
+                            // 'five': FiveController,
+                          });
                         },
                       ),
                     ],
@@ -149,8 +140,6 @@ class TumorMarkerScreen extends StatelessWidget {
               ),
             ),
           );
-        },
-      ),
-    );
+        });
   }
 }

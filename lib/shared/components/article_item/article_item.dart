@@ -1,5 +1,6 @@
 // ignore_for_file: sized_box_for_whitespace
 
+import 'package:ColonCancer/shared/components/sized_box/sized_box.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 
@@ -70,7 +71,7 @@ Widget articleBuilder(list, context, {isSearch = false}) => ConditionalBuilder(
     builder: (context) => ListView.separated(
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) => buildArticleItem(list[index], context),
-        separatorBuilder: (context, index) => SizedBox(height: 5),
+        separatorBuilder: (context, index) => 0.ph,
         itemCount: list.length),
     fallback: (context) => isSearch
         ? Container()

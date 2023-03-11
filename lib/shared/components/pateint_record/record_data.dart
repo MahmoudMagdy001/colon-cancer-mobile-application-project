@@ -1,39 +1,50 @@
 import 'package:ColonCancer/shared/cubit/cubit.dart';
+import 'package:ColonCancer/shared/cubit/test.dart';
 import 'package:ColonCancer/shared/styles/colors.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 
 Widget buildTaskItem(Map model, context) => InkWell(
-      onTap: () {
-        Navigator.pushNamed(
-          context,
-          '/task-detail',
-          arguments: {
-            'id': model['id'],
-            'name': model['name'],
-            'date': model['date'],
-            'age': model['age'],
-            'weight': model['weight'],
-            'height': model['height'],
-            'BSA': model['BSA'],
-            'gender': model['gender'],
-            'smoke': model['smoke'],
-            'one': model['one'],
-            'two': model['two'],
-            'three': model['three'],
-            'four': model['four'],
-            'five': model['five'],
-          },
-        );
+      onTap: () async {
+        final dbHelper = DatabaseHelper();
+        final db = await dbHelper.database;
+
+        final List<Map<String, dynamic>> result = await db.query('forum');
+
+        if (result.isNotEmpty) {
+          final row = result.first;
+          final id = row['id'];
+          final name = row['name'];
+          final age = row['age'];
+          final date = row['date'];
+          final weight = row['weight'];
+          final height = row['height'];
+          final BSA = row['BSA'];
+          final gender = row['gender'];
+          final smoke = row['smoke'];
+
+          // Do something with the data...
+          Navigator.pushNamed(
+            context,
+            '/task-detail',
+            arguments: {
+              'id': id,
+              'name': name,
+              'date': date,
+              'age': age,
+              'weight': weight,
+              'height': height,
+              'BSA': BSA,
+              'gender': gender,
+              'smoke': smoke,
+            },
+          );
+        }
       },
       child: Card(
         child: Dismissible(
           key: Key(model['id'].toString()),
-          onDismissed: (direction) {
-            AppCubit.get(context).deleteData(
-              id: model['id'],
-            );
-          },
+          onDismissed: (direction) {},
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Row(
@@ -90,9 +101,9 @@ Widget tasksBuilder({required List<Map> data}) => ConditionalBuilder(
       condition: data.isNotEmpty,
       builder: (context) => ListView.separated(
         physics: BouncingScrollPhysics(),
-        itemBuilder: (context, index) => buildTaskItem(data[index], context),
         separatorBuilder: (context, index) => SizedBox(height: 5),
         itemCount: data.length,
+        itemBuilder: (context, index) => buildTaskItem(data[index], context),
       ),
       fallback: (context) => Center(
         child: Column(

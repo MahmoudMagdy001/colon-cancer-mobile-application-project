@@ -19,7 +19,7 @@ class homeLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AppCubit()
-        ..createDatabase()
+        
         ..getcancer(),
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},

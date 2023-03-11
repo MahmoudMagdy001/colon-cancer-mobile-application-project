@@ -1,8 +1,5 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last, library_private_types_in_public_api
 
-import 'package:ColonCancer/shared/components/divider/divider.dart';
-import 'package:ColonCancer/shared/components/text_form_field/text_form_field.dart';
-
 import 'package:flutter/material.dart';
 
 import '../../shared/components/button/button.dart';
@@ -34,7 +31,7 @@ class _MyTabbedPageState extends State<MyTabbedPage>
   var geneController = TextEditingController();
   var TumorController = TextEditingController();
 
-  String _selectedItem = 'Item 1';
+  String _selectedItem = 'Gene Expression';
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +43,6 @@ class _MyTabbedPageState extends State<MyTabbedPage>
           labelColor: Colors.black,
           tabs: [
             Tab(text: 'Gene Expression'),
-            Tab(text: 'Tumor Markers'),
           ],
         ),
       ),

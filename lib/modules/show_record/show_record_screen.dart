@@ -1,8 +1,11 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:ColonCancer/shared/components/button/button.dart';
-import 'package:ColonCancer/shared/components/chart/char_screen.dart';
 
 import 'package:ColonCancer/shared/components/sized_box/sized_box.dart';
+import 'package:ColonCancer/shared/cubit/test.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class showRecordScreen extends StatelessWidget {
   @override
@@ -17,11 +20,6 @@ class showRecordScreen extends StatelessWidget {
     final String BSA = args['BSA'];
     final String gender = args['gender'];
     final String smoke = args['smoke'];
-    final String one = args['one'];
-    final String two = args['two'];
-    final String three = args['three'];
-    final String four = args['four'];
-    final String five = args['five'];
 
     return Scaffold(
       appBar: AppBar(
@@ -32,145 +30,175 @@ class showRecordScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: Colors.black87),
         ),
-        //   ],
-        // ),
         elevation: 5.0,
       ),
-      body: Padding(
-        padding: EdgeInsets.all(20.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Text(
-                  'Name: $name',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                'Date: $date',
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                'Age: $age',
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                'Weight: $weight',
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                'Height: $height',
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                'BSA: $BSA',
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 10),
-              if (gender == 'true')
-                Text(
-                  'Gender: Male',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              if (gender == 'false')
-                Text(
-                  'Gender: Female',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              SizedBox(height: 10),
-              if (smoke == '1')
-                Text(
-                  'Smoke: Smoker',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              if (smoke == '2')
-                Text(
-                  'Smoke: Not Smoker',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              10.ph,
-              Container(
-                width: double.infinity,
-                height: 320,
-                child: chartScreen(),
-              ),
-              CustomButton(
-                label: 'Add Tumor Marker',
-                onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    '/tumor-marker',
-                    arguments: {
-                      'id': id,
-                      'name': name,
-                      'age': age,
-                      'gender': gender,
-                      'one': one,
-                      'two': two,
-                      'three': three,
-                      'four': four,
-                      'five': five,
-                    },
-                  );
+      body: Container(
+        child: FutureBuilder<List<TumorMarker>>(
+          // future: getDataFromDatabase(),
+          builder: (context, snapshot) {
+            // if (snapshot.hasData)
+            {
+              // final List<TumorMarker> tumorData = snapshot.data!;
+              return Padding(
+                padding: EdgeInsets.all(20.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Text(
+                          'Name: $name',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Date: $date',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Age: $age',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Weight: $weight',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Height: $height',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'BSA: $BSA',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      if (gender == 'true')
+                        Text(
+                          'Gender: Male',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      if (gender == 'false')
+                        Text(
+                          'Gender: Female',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      SizedBox(height: 10),
+                      if (smoke == '1')
+                        Text(
+                          'Smoke: Smoker',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      if (smoke == '2')
+                        Text(
+                          'Smoke: Not Smoker',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
 
-                  // Navigator.pushNamed(
-                  //   context,
-                  //   '/tumor-marker',
-                  //   arguments: {
-                  //     'id': model['id'],
-                  //     'name': model['name'],
-                  //     'date': model['date'],
-                  //     'age': model['age'],
-                  //     'weight': model['weight'],
-                  //     'height': model['height'],
-                  //     'BSA': model['BSA'],
-                  //     'gender': model['gender'],
-                  //     'smoke': model['smoke'],
-                  //   },
-                  // );
-                },
-              ),
-            ],
-          ),
+                      10.ph,
+                      // Container(
+                      //     width: double.infinity,
+                      //     height: 320,
+                      //     child: Column(
+                      //       children: [
+                      //         //Initialize the chart widget
+                      //         SfCartesianChart(
+                      //           primaryXAxis: CategoryAxis(),
+                      //           // Chart title
+                      //           title: ChartTitle(text: 'Tumor Marker Chart'),
+
+                      //           // Enable tooltip
+                      //           tooltipBehavior: TooltipBehavior(enable: true),
+                      //           series: <ChartSeries<TumorMarker, String>>[
+                      //             LineSeries<TumorMarker, String>(
+                      //               dataSource: tumorData,
+                      //               xValueMapper: (data, _) => data.date,
+                      //               yValueMapper: (data, _) => data.value,
+                      //               // Enable data label
+                      //               dataLabelSettings:
+                      //                   DataLabelSettings(isVisible: true),
+                      //             ),
+                      //           ],
+                      //         ),
+                      //       ],
+                      //     )),
+                      // CustomButton(
+                      //   label: 'Add Tumor Marker',
+                      //   onPressed: () {
+                      //     Navigator.pushNamed(
+                      //       context,
+                      //       '/tumor-marker',
+                      //       arguments: {
+                      //         'id': id,
+                      //         'name': name,
+                      //       },
+                      //     );
+                      //   },
+                      // ),
+                    ],
+                  ),
+                ),
+              );
+            }
+            //else
+            //return Center(child: CircularProgressIndicator());
+          },
         ),
       ),
     );
   }
+
+  // Future<List<TumorMarker>> getDataFromDatabase() async {
+  //   final dbHelper = DatabaseHelper();
+  //   final db = await dbHelper.database;
+
+  //   final List<Map<String, dynamic>> result = await db.query('Tumor');
+
+  //   final List<TumorMarker> tumorData = result
+  //       .map((row) => TumorMarker(date: row['date'], value: row['value']))
+  //       .toList();
+
+  //   return tumorData;
+  // }
+}
+
+class TumorMarker {
+  final String date;
+  final double value;
+
+  TumorMarker({required this.date, required this.value});
 }

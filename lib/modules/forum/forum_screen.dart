@@ -3,8 +3,8 @@
 import 'dart:math';
 
 import 'package:ColonCancer/shared/components/divider/divider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:ColonCancer/shared/cubit/test.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +26,7 @@ class forumScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AppCubit()..createDatabase(),
+      create: (context) => AppCubit(),
       child: BlocConsumer<AppCubit, AppStates>(
           listener: (context, state) {},
           builder: (context, state) {
@@ -37,17 +37,6 @@ class forumScreen extends StatelessWidget {
             var gender = cubit.isMale;
             var smoke = cubit.isSelected;
             var date = DateFormat.yMMMd().format(DateTime.now());
-
-            // getData() async {
-            //   FirebaseFirestore.instance
-            //       .collection("forum")
-            //       .snapshots()
-            //       .listen((event) {
-            //     event.docs.forEach((element) {
-            //       print(element.data());
-            //     });
-            //   });
-            // }
 
             return Scaffold(
               appBar: AppBar(
@@ -368,20 +357,33 @@ class forumScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(8.0)),
                               backgroundColor:
                                   !cubit.isMale ? Colors.pink : Colors.blue),
-                          onPressed: () {
+                          onPressed: () async {
                             if (formkey.currentState!.validate()) {
                               try {
-                                // getData();
-                                cubit.insertToDatabase(
-                                  name: nameContoller.text,
-                                  age: ageContoller.text,
-                                  weight: weight,
-                                  height: height,
-                                  BSA: BSAA,
-                                  gender: gender.toString(),
-                                  smoke: smoke.toString(),
-                                  date: date,
-                                );
+                                final dbHelper = DatabaseHelper();
+                                final db = await dbHelper.database;
+
+                                await db.insert('forum', {
+                                  'name': nameContoller.text,
+                                  'age': ageContoller.text,
+                                  'weight': weight,
+                                  'height': height,
+                                  'BSA': BSAA,
+                                  'gender': gender.toString(),
+                                  'smoke': smoke.toString(),
+                                  'date': date,
+                                });
+
+                                // cubit.insertToDatabase(
+                                //   name: nameContoller.text,
+                                //   age: ageContoller.text,
+                                //   weight: weight,
+                                //   height: height,
+                                //   BSA: BSAA,
+                                //   gender: gender.toString(),
+                                //   smoke: smoke.toString(),
+                                //   date: date,
+                                // );
                                 _showAlertDialogData(context);
                               } catch (error) {
                                 print(error);
