@@ -39,4 +39,18 @@ class DatabaseHelper {
     final result = await db.query('forum', columns: ['name']);
     return result.map((e) => e['name'] as String).toList();
   }
+
+  Future<List<String>> getForumAge() async {
+    final dbHelper = DatabaseHelper();
+    final db = await dbHelper.database;
+    final result = await db.query('forum', columns: ['age']);
+    return result.map((e) => e['age'] as String).toList();
+  }
+
+  Future<List<String>> getForumGender() async {
+    final dbHelper = DatabaseHelper();
+    final db = await dbHelper.database;
+    final result = await db.query('forum', columns: ['gender']);
+    return result.map((e) => e['gender'] as String).toList();
+  }
 }

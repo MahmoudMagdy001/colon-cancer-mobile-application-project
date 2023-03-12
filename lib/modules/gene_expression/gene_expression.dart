@@ -55,10 +55,18 @@ class _MyTabbedPageState extends State<MyTabbedPage> {
   String _selectedName = '';
   List<String> _names = [];
 
+  String _SelectedAge = '';
+  List<String> _ages = [];
+
+  String _SelectedGender = '';
+  List<String> _Gender = [];
+
   @override
   void initState() {
     super.initState();
     _loadNames();
+    _loadAges();
+    _loadGenders();
   }
 
   void _loadNames() async {
@@ -68,6 +76,28 @@ class _MyTabbedPageState extends State<MyTabbedPage> {
       _names = names;
       if (_names.isNotEmpty) {
         _selectedName = _names.first;
+      }
+    });
+  }
+
+  void _loadAges() async {
+    final dbHelper = DatabaseHelper();
+    final ages = await dbHelper.getForumAge();
+    setState(() {
+      _ages = ages;
+      if (_ages.isNotEmpty) {
+        _SelectedAge = _ages.first;
+      }
+    });
+  }
+
+  void _loadGenders() async {
+    final dbHelper = DatabaseHelper();
+    final genders = await dbHelper.getForumGender();
+    setState(() {
+      _Gender = genders;
+      if (_Gender.isNotEmpty) {
+        _SelectedGender = _Gender.first;
       }
     });
   }
@@ -195,7 +225,11 @@ class _MyTabbedPageState extends State<MyTabbedPage> {
                                     child: Text(name),
                                   ))
                               .toList(),
-                          hint: Text('Select a name'),
+                          menuMaxHeight: 100.0,
+                          elevation: 24,
+                          // icon: Icon(Icons.person),
+                          borderRadius: BorderRadius.circular(10),
+                          hint: Text('Patient Name'),
                         ),
                       ),
                       10.ph,

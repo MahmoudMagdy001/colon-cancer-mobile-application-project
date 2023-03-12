@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sqflite/sqflite.dart';
 
 import '../../modules/endoscopy/endoscopy_screen.dart';
 import '../../modules/gene_expression/gene_expression.dart';
@@ -15,7 +14,6 @@ import '../../modules/histopathology/histopathology_screen.dart';
 import '../../modules/news/news_screen.dart';
 import '../../modules/records/records_screen.dart';
 import '../network/remote/dio_Helper.dart';
-import 'package:path/path.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
@@ -76,7 +74,7 @@ class AppCubit extends Cubit<AppStates> {
   void changeBottomNavBar(int index) {
     currentIndex = index;
     if (index == 0) getcancer();
-    
+
     emit(AppBottomNavState());
   }
 
@@ -180,132 +178,4 @@ class AppCubit extends Cubit<AppStates> {
       print('failed to pick image: $e');
     }
   }
-
-  // static Database? database;
-  // List<Map> newForum = [];
-
-  // void createDatabase() {
-  //   openDatabase(
-  //     'Cancer.db',
-  //     version: 1,
-  //     onCreate: (database, version) {
-  //       Batch batch = database.batch();
-  //       batch.execute(
-  //           'CREATE TABLE forum (id INTEGER PRIMARY KEY, name TEXT,age TEXT, weight TEXT, height TEXT, BSA TEXT, gender TEXT, smoke TEXT, date TEXT)');
-  //       batch.execute(
-  //           'CREATE TABLE Tumor (id INTEGER PRIMARY KEY, name TEXT, one TEXT, two TEXT, three TEXT, four TEXT, five TEXT)');
-  //       var res = batch.commit().then((value) {
-  //         print('tables created');
-  //       }).catchError((onError) {
-  //         print('error when creating table ${onError.toString()}');
-  //       });
-
-  //       // print('database created ');
-  //       // database
-  //       //     .execute(
-  //       //         'CREATE TABLE forum (id INTEGER PRIMARY KEY, name TEXT,age TEXT, weight TEXT, height TEXT, BSA TEXT, gender TEXT, smoke TEXT, date TEXT)'
-  //       //         'CREATE TABLE Tumor (id INTEGER PRIMARY KEY, name TEXT, one TEXT, two TEXT, three TEXT, four TEXT, five TEXT)')
-  //       //     .then((value) {
-  //       //   print('table created ');
-  //       // }).catchError((error) {
-  //       //   print('Error when creating table ${error.toString()}');
-  //       // });
-  //     },
-  //     onOpen: (database) {
-  //       getDataFromDatabase(database);
-  //       print('database opened');
-  //     },
-  //   ).then((value) {
-  //     database = value;
-  //     print(value);
-  //     emit(AppCreateDataBaseState());
-  //   });
-  // }
-
-  // void getDataFromDatabase(database) {
-  //   newForum = [];
-
-  //   emit(AppGetDataBaseLoadingState());
-  //   database.rawQuery('SELECT * FROM forum').then((value) {
-  //     value.forEach((element) {
-  //       newForum.add(element);
-  //     });
-  //     emit(AppGetDataBaseState());
-  //   });
-  // }
-
-  // insertToDatabase({
-  //   required String name,
-  //   required String age,
-  //   required int weight,
-  //   required int height,
-  //   required double BSA,
-  //   required String gender,
-  //   required String smoke,
-  //   required String date,
-  // }) async {
-  //   await database?.transaction((txn) async {
-  //     txn
-  //         .rawInsert(
-  //       'INSERT INTO forum(name, age, weight, height, BSA, gender, smoke, date) VALUES ("$name","$age","$weight","$height","$BSA","$gender","$smoke", "$date")',
-  //     )
-  //         .then((value) {
-  //       print('$value inserted successfully');
-  //       emit(AppInsertDataBaseState());
-
-  //       getDataFromDatabase(database);
-  //     }).catchError((error) {
-  //       print('error when inserting new record ${error.toString()}');
-  //     });
-  //     return null;
-  //   });
-  // }
-
-  // void deleteData({
-  //   required int id,
-  // }) async {
-  //   database?.rawDelete('DELETE FROM forum WHERE id = ?', [id]).then((value) {
-  //     getDataFromDatabase(database);
-  //     emit(AppDeleteDataBaseState());
-  //   });
-  // }
-
-  // insertToDatabaseTumor({
-  //   required int id,
-  //   required String name,
-  //   required String one,
-  //   required String two,
-  //   required String three,
-  //   required String four,
-  //   required String five,
-  // }) async {
-  //   await database?.transaction((txn) async {
-  //     txn
-  //         .rawInsert(
-  //       'INSERT INTO Tumor(id, name, one, two, three, four, five) VALUES ("$id","$name","$one","$two","$three","$four","$five")',
-  //     )
-  //         .then((value) {
-  //       print('$value inserted successfully');
-  //       emit(AppInsertDataBaseState());
-
-  //       getDataFromDatabase(database);
-  //     }).catchError((error) {
-  //       print('error when inserting new record ${error.toString()}');
-  //     });
-  //     return null;
-  //   });
-  // }
-
-  // // void updateData({
-  // //   required int id,
-  // //   required String one,
-  // // }) async {
-  // //   database?.rawUpdate(
-  // //       'UPDATE forum SET one = ? WHERE id = ?', [id]).then((value) {
-  // //     //getDataFromDatabase(database);
-  // //     emit(AppUpdateDataBaseState());
-  // //   }).catchError((error) {
-  // //     print('error when updating record ${error.toString()}');
-  // //   });
-  // // }
 }

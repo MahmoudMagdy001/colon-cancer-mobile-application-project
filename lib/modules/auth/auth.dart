@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, sort_child_properties_last, library_private_types_in_public_api, unused_local_variable
 
-import 'package:ColonCancer/layout/home_layout.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -384,11 +382,11 @@ class _authModule extends State<authModule>
                       onPressed: () async {
                         if (formkeylogin.currentState!.validate()) {
                           try {
-                            await auth.signInWithEmailAndPassword(
-                                email: emaillogin, password: passwordlogin);
-                            emailController.text = '';
-                            passwordController.text = '';
-                            navigatePushReplacementTo(context, homeLayout());
+                            await FirebaseAuth.instance
+                                .signInWithEmailAndPassword(
+                                    email: emaillogin, password: passwordlogin);
+
+                            navigatePushReplacementTo(context, HomeModel());
                           } catch (error) {
                             print(error);
                           }
@@ -410,14 +408,14 @@ class _authModule extends State<authModule>
     try {
       FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-      CollectionReference usersref =
-          FirebaseFirestore.instance.collection("users");
-
-      usersref.add({
-        'username': nameControllerSignup.text,
-        'email': emailControllerSignup.text,
-        'password': passwordControllerSignup.text,
-      });
+      // CollectionReference usersref =
+      //     FirebaseFirestore.instance.collection("users");
+      //
+      // usersref.add({
+      //   'username': nameControllerSignup.text,
+      //   'email': emailControllerSignup.text,
+      //   'password': passwordControllerSignup.text,
+      // });
 
       _showAlertDialogSignup(context);
     } on FirebaseAuthException catch (e) {
