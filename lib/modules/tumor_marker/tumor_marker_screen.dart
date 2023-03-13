@@ -51,7 +51,9 @@ class TumorMarkerScreen extends StatelessWidget {
                       10.ph,
                       customTextFormField(
                         type: TextInputType.text,
-                        validator: (value) {},
+                        validator: (value) {
+                          return null;
+                        },
                         controller: NameController,
                         label: '$id- ' + '$name',
                         fontWeight: FontWeight.bold,
@@ -72,7 +74,9 @@ class TumorMarkerScreen extends StatelessWidget {
                       SizedBox(height: 10),
                       customTextFormField(
                         type: TextInputType.number,
-                        validator: (value) {},
+                        validator: (value) {
+                          return null;
+                        },
                         controller: OneController,
                         onChange: (value) {
                           value = onetext!;
@@ -84,7 +88,9 @@ class TumorMarkerScreen extends StatelessWidget {
                       10.ph,
                       customTextFormField(
                         type: TextInputType.number,
-                        validator: (value) {},
+                        validator: (value) {
+                          return null;
+                        },
                         controller: TwoController,
                         label: 'CA19-9',
                         prefix: Icons.numbers_rounded,
@@ -93,7 +99,9 @@ class TumorMarkerScreen extends StatelessWidget {
                       10.ph,
                       customTextFormField(
                         type: TextInputType.number,
-                        validator: (value) {},
+                        validator: (value) {
+                          return null;
+                        },
                         controller: ThreeController,
                         label: 'CA50',
                         prefix: Icons.numbers_rounded,
@@ -102,7 +110,9 @@ class TumorMarkerScreen extends StatelessWidget {
                       10.ph,
                       customTextFormField(
                         type: TextInputType.number,
-                        validator: (value) {},
+                        validator: (value) {
+                          return null;
+                        },
                         controller: FourController,
                         label: 'CA24-2',
                         prefix: Icons.numbers_rounded,
@@ -111,7 +121,9 @@ class TumorMarkerScreen extends StatelessWidget {
                       10.ph,
                       customTextFormField(
                         type: TextInputType.number,
-                        validator: (value) {},
+                        validator: (value) {
+                          return null;
+                        },
                         controller: FiveController,
                         label: 'AFP',
                         prefix: Icons.numbers_rounded,

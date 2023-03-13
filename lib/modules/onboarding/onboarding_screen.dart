@@ -40,21 +40,25 @@ class onBoardingScreen extends StatelessWidget {
         headerBackgroundColor: backGroundColor,
         pageBackgroundColor: backGroundColor,
         background: [
-          Image.asset(
-            fit: BoxFit.fitWidth,
-            'images/find_doctor.png',
-            height: 285,
+          Center(
+            child: Image.asset(
+              scale: 0.65,
+              fit: BoxFit.cover,
+              'images/find_doctor.png',
+            ),
           ),
           Image.asset(
             'images/middle.png',
+            fit: BoxFit.fitWidth,
             height: 450,
           ),
           Image.asset(
             'images/forum.png',
+            fit: BoxFit.fitWidth,
             height: 400,
           ),
         ],
-        speed: 1.8,
+        speed: 1.2,
         pageBodies: [
           Container(
             padding: EdgeInsets.symmetric(horizontal: 40),

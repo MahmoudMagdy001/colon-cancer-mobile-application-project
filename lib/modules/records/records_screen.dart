@@ -15,9 +15,7 @@ class recordsScreen extends StatelessWidget {
         onPressed: () {
           navigatePushTo(context, forumScreen());
         },
-        child: Icon(
-          Icons.add,
-        ),
+        child: Icon(Icons.add),
       ),
       body: Container(
         child: FutureBuilder(
@@ -63,7 +61,7 @@ class recordsScreen extends StatelessWidget {
                       child: Dismissible(
                         onDismissed: (direction) async {
                           final db = await DatabaseHelper().database;
-                          int numRowsDeleted = await db.delete('forum',
+                          await db.delete('forum',
                               where: 'id = ?', whereArgs: [id]);
                         },
                         key: Key(id.toString()),

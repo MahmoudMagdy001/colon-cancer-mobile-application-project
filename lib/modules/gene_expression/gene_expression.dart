@@ -29,6 +29,8 @@
 //   }
 //
 
+// ignore_for_file: unused_field
+
 import 'package:ColonCancer/shared/components/button/button.dart';
 import 'package:ColonCancer/shared/components/divider/divider.dart';
 import 'package:ColonCancer/shared/components/sized_box/sized_box.dart';
@@ -237,7 +239,9 @@ class _MyTabbedPageState extends State<MyTabbedPage> {
                       SizedBox(height: 10),
                       customTextFormField(
                         type: TextInputType.number,
-                        validator: (value) {},
+                        validator: (value) {
+                          return null;
+                        },
                         controller: OneController,
                         label: 'CEA',
                         prefix: Icons.numbers_rounded,
@@ -246,7 +250,9 @@ class _MyTabbedPageState extends State<MyTabbedPage> {
                       10.ph,
                       customTextFormField(
                         type: TextInputType.number,
-                        validator: (value) {},
+                        validator: (value) {
+                          return null;
+                        },
                         controller: TwoController,
                         label: 'CA19-9',
                         prefix: Icons.numbers_rounded,
@@ -255,7 +261,9 @@ class _MyTabbedPageState extends State<MyTabbedPage> {
                       10.ph,
                       customTextFormField(
                         type: TextInputType.number,
-                        validator: (value) {},
+                        validator: (value) {
+                          return null;
+                        },
                         controller: ThreeController,
                         label: 'CA50',
                         prefix: Icons.numbers_rounded,
@@ -264,7 +272,9 @@ class _MyTabbedPageState extends State<MyTabbedPage> {
                       10.ph,
                       customTextFormField(
                         type: TextInputType.number,
-                        validator: (value) {},
+                        validator: (value) {
+                          return null;
+                        },
                         controller: FourController,
                         label: 'CA24-2',
                         prefix: Icons.numbers_rounded,
@@ -273,7 +283,9 @@ class _MyTabbedPageState extends State<MyTabbedPage> {
                       10.ph,
                       customTextFormField(
                         type: TextInputType.number,
-                        validator: (value) {},
+                        validator: (value) {
+                          return null;
+                        },
                         controller: FiveController,
                         label: 'AFP',
                         prefix: Icons.numbers_rounded,
